@@ -40,7 +40,6 @@ void setup() {
   textSize(18);
   fill(37, 106, 155);
   text(instructions, 0, 20);
-  print("Current mask: edgeDetection.  \n Press 1-4 to change the mask");
 }
 
 void draw() {
