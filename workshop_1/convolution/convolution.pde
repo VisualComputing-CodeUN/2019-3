@@ -33,10 +33,17 @@ PGraphics pgDer;
 int imgWidth; 
 int imgHeight; 
 
-String instructions = "To change the mask convolution just press: \n 1: Egde detection. \n 2: Box Blur. \n 3: Sharpen. \n 4: Emboss";
+String instructions = "To change the mask convolution just press: \n 1: Egde detection. \n 2: Box Blur. \n 3: Sharpen. \n 4: Emboss \n\n To change the image just press: \n a: Nature. \n b: Moon Walking. \n c: City. \n d: Match";
+
+String img1 = "nature.jpg";
+String img2 = "moon.png";
+String img3 = "city.jpg";
+String img4 = "futbol.jpg";
+
+String currentImage = img1;
 
 void setup() {
-  img = loadImage("moon.png"); 
+  img = loadImage(currentImage); 
   fullScreen();
   
   imgWidth = img.width;
@@ -48,10 +55,10 @@ void setup() {
   textSize(18);
   fill(37, 106, 155);
   text(instructions, 0, imgHeight + 20);
-  print("Current mask: edgeDetection.  \n Press 1-4 to change the mask");
 }
 
 void draw() {
+  img = loadImage(currentImage); 
   image(pgIzq,0,0);
   image(pgDer,imgWidth,0);
   
@@ -88,6 +95,18 @@ void keyPressed() {
       break;
     case '4':
       currentFilter = emboss;
+      break;
+    case 'a':
+      currentImage = img1;
+      break;
+    case 'b':
+      currentImage = img2;
+      break;
+    case 'c':
+      currentImage = img3;
+      break;
+    case 'd':
+      currentImage = img4;
       break;
   } 
 }

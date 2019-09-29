@@ -34,4 +34,8 @@ Para la sección del histograma, se muestra la imagen en escala de grises en la 
 Para la sección de la escala de Grises y Luma se usaron los valores de conversión Y' = 0.299\*r + 0.587\*g + 0.114\*b extraidos de [Luma](https://es.wikipedia.org/wiki/Luma_(v%C3%ADdeo)) se puede observar en el archivo `luma.pde` 
 Para algunas imágenes si se resalta la luminosidad o se aprecia un fondo más oscuro, en otras imágenes es muy similar a la escala de grises por promedio.
 
-* Luma es un algoritmo para caracterizar pixeles de acuerdo a su limunosidad por medio una ecuación que nos describe los coeficientes para cada componente (Rojo, Verde, Azul) en el espacio dimensional de un video dependiendo del formato. Para el ejercicio hicimos uso del formato **UIT-R BT.601-7**
+* Luma es un algoritmo para caracterizar pixeles de acuerdo a su limunosidad, por medio de una ecuación que nos describe los coeficientes para cada componente (Rojo, Verde, Azul) en el espacio dimensional de un frame dependiendo del formato. Para el ejercicio hicimos uso del formato **UIT-R BT.601-7**
+
+
+Para la eficiencia computacional de los videos, comenzamos con una tasa de 30fps e interactivamente podemos aumentarla o disminuirla; éste ejercicio permitió deducir que el atributo en cuestión tiene una cota superior, puesto que si se define un valor muy alto para el frameRate, la tasa de refresco no alcanzará el valor que hemos propuesto, ya que sólo alcanzará el valor de su cota superior que depende de los recursos de la maquina en que se esté renderizando, la calidad y el formato del video. Los resultados permitieron identificar que las operaciones que se hagan con los frames a la hora de renderizar también tienen impacto en la cota superior de la eficiencia computacional, evidenciada en la comparación entre operaciones cómo convoluciónes y conversión a escala de grises.
+

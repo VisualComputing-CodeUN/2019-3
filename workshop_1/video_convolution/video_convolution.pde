@@ -40,7 +40,7 @@ float[][] emboss = { { -embossK, -1, 0 },
 float[][] currentFilter = edgeDetection;      
 String currentFilterText = "Egde detection";
 
-String instructions = "To change the video mask convolution just press: \n 1: Egde detection. \n 2: Box Blur. \n 3: Sharpen. \n 4: Emboss \n\n\n Computing eficency: \n To increase press + \n To decrease press -";
+String instructions = "To change the video mask convolution just press: \n 1: Egde detection. \n 2: Box Blur. \n 3: Sharpen. \n 4: Emboss \n\n\n Computing efficiency: \n To increase press + \n To decrease press -";
 String analysis = "";
 
 int computing = 30;
@@ -99,7 +99,7 @@ void draw() {
  frames.text(currentFilterText, 150, 30);
  frames.text("Setting FrameRate against actual FrameRate:", 10, 60);
  frames.text(computing, 10, 90);
- frames.text(frameRate, 30, 90);
+ frames.text(frameRate, 50, 90);
  frames.endDraw();
 }
 
