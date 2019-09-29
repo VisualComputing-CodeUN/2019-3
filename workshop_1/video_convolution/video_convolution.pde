@@ -1,9 +1,14 @@
+//Resolucion maxima de imagenes 640x360
+//basado en https://processing.org/examples/convolution.html
+//https://processing.org/examples/blur.html
+//https://es.wikipedia.org/wiki/Luma_(v%C3%ADdeo)
 import processing.video.*;
 Movie video;
 Movie videoEdited;
 
 PGraphics pgIzq;
 PGraphics pgDer;
+PGraphics frames;
 
 PGraphics pgIzqBottom;
 PGraphics pgDerBottom;
@@ -32,34 +37,37 @@ float[][] emboss = { { -embossK, -1, 0 },
                        { 0, 1, embossK } };                   
 
 
-float[][] currentFilter = edgeDetection;          
-String instructions = "To change the video mask convolution just press: \n 1: Egde detection. \n 2: Box Blur. \n 3: Sharpen. \n 4: Emboss";
+float[][] currentFilter = edgeDetection;      
+String currentFilterText = "Egde detection";
 
+String instructions = "To change the video mask convolution just press: \n 1: Egde detection. \n 2: Box Blur. \n 3: Sharpen. \n 4: Emboss \n\n\n Computing eficency: \n To increase press + \n To decrease press -";
+String analysis = "";
+
+int computing = 30;
 
 void setup() {
-   fullScreen();
-   pgIzq = createGraphics(640, 360);
-   pgDer = createGraphics(640, 360);
-   
    video = new Movie(this, "test.mov");
    videoEdited = new Movie(this, "test.mov");
    video.loop();
    videoEdited.loop();
-   
+   videoWidth = video.width;
+   videoHeight = video.height;
+   frameRate(computing);
+   fullScreen();
+   pgIzq = createGraphics(videoWidth, videoHeight);
+   pgDer = createGraphics(videoWidth, videoHeight);
+   frames = createGraphics(videoWidth, videoHeight);
     // show instructions
-    textSize(18);
-    fill(37, 106, 155);
-    text(instructions, 0, video.height + 60);
+   textSize(18);
+   fill(37, 106, 155);
+   text(instructions, 0, 30);
 }
 
 void draw() {
  // CONVOLUTIONS
- 
- videoWidth = videoEdited.width;
- videoHeight = videoEdited.height;
-
- image(pgIzq, 0, 0);
- image(pgDer, videoWidth, 0);
+ image(pgIzq, 0, videoHeight);
+ image(pgDer, videoWidth, videoHeight);
+ image(frames, videoWidth, 0);
  pgDer.beginDraw();
  pgDer.background(0); 
  pgDer.image(videoEdited, 0, 0);
@@ -81,6 +89,18 @@ void draw() {
  pgIzq.beginDraw();
  pgIzq.image(video, 0, 0);
  pgIzq.endDraw();
+ 
+ // analysis 
+ frames.beginDraw();
+ frames.background(255,255,255);
+ frames.textSize(18);
+ frames.fill(37, 106, 155);
+ frames.text("Current mask:", 10, 30);
+ frames.text(currentFilterText, 150, 30);
+ frames.text("Setting FrameRate against actual FrameRate:", 10, 60);
+ frames.text(computing, 10, 90);
+ frames.text(frameRate, 30, 90);
+ frames.endDraw();
 }
 
 // read new frames from the movie
@@ -94,15 +114,27 @@ void keyPressed() {
   switch (key) {
     case '1':
       currentFilter = edgeDetection;
+      currentFilterText = "Edge detection";
       break;
     case '2':
       currentFilter = boxBlur;
+      currentFilterText = "Box Blur";
       break;
     case '3':
       currentFilter = sharpen;
+      currentFilterText = "Sharpen";
       break;
     case '4':
       currentFilter = emboss;
+      currentFilterText = "Emboss";
+      break;
+    case '+':
+      computing += 1;
+      frameRate(computing);
+      break;
+    case '-':
+      computing -= 1;
+      frameRate(computing);
       break;
   } 
 }
