@@ -5,16 +5,19 @@ PGraphics pgDown;
 
 boolean change = true;
 float wei = 1.5;
+String instructions = "Press 1 to change the effect. + to add shape - to became thin";
 
 void setup() {
   size(700, 500);
   stroke(0);
   background(#808080);
+  textSize(10);
   
 } 
 
 void draw() {
   background(#808080);
+  text(instructions, 0, 10);
     strokeWeight(wei);
     noFill();
     int ini = 50;

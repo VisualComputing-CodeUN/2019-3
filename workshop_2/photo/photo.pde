@@ -18,9 +18,10 @@ int columnas = 10; //10-64-32-80
 int filas = 10;  //10-36-18-72
 
 String img1 = "negro.jpeg";
+String img2 = "shark.jpg";
 
 String currentImage = img1;
-
+String instructions = "To change the image just press: \n 1: photo. \n 2: shark.\n\n Select the quantity of columns and rows to strip:\n A: 10x10 \n B: 64x36 \n C: 32x18 \n D: 80x72";
 void setup() {
   img = loadImage(currentImage); //load imagen
   HImg = img.height;
@@ -35,7 +36,10 @@ void setup() {
   pgSmall2= createGraphics(WImg/2,HImg/2);
   pgSmallX= createGraphics(WImg/2,HImg/2);
   pgSmallX2= createGraphics(WImg/2,HImg/2);
-
+  
+  textSize(18);
+  fill(37, 106, 155);
+  text(instructions, WImg+20, HImg+20);
 }
 
 void draw() {
@@ -159,4 +163,31 @@ void draw() {
   pgSmallX2.updatePixels();
   pgSmallX2.endDraw();
     
+}
+
+void keyPressed() {
+  switch (key) {
+    case '1':
+      currentImage = img1;
+      break;
+    case '2':
+      currentImage = img2;
+      break;
+    case 'a':
+      columnas = 10; 
+      filas = 10; 
+      break;
+    case 'b':
+      columnas = 64; 
+      filas = 36; 
+      break;
+    case 'c':
+      columnas = 32; 
+      filas = 18; 
+      break;
+    case 'd':
+      columnas = 80; 
+      filas = 72; 
+      break;
+  } 
 }
