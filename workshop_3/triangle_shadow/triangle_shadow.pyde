@@ -25,7 +25,6 @@ def draw():
         
         #shadow
         loadPixels()
-        cont = 0;
         for x in range(400):
             for y in range(400):
                 loc = x+y*400
@@ -71,14 +70,14 @@ def calculateOrders():
     V2 = globals()['V2']
     V3 = globals()['V3']
     if edge_function(V1,V2,(V3['x'],V3['y'])) > 0:
-        #print("se cambia coordenadas de V2 con V3")
+        print("se cambia coordenadas de V2 con V3")
         tempX = globals()['V2']['x']
         tempY = globals()['V2']['y']
         globals()['V2']['x']=globals()['V3']['x']
         globals()['V2']['y']=globals()['V3']['y']
         globals()['V3']['x']=tempX
         globals()['V3']['y']=tempY
-    
+        
     #else:
         #print("no se necesitan cambiar los puntos")
     
