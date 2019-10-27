@@ -56,6 +56,7 @@ def draw():
                         col, inside_trian = get_baricentric_coor(edge['x'], edge['y'])
                         if inside_trian:
                             anti_aliasing = True
+                            break
                     if anti_aliasing:
                         col = anti_aliasing_pixel(x, y, A)
                 fill(col)
