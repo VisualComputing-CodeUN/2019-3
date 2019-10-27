@@ -1,6 +1,6 @@
 
 sizeScreen = 600
-backgroundColor = color(50)
+backgroundColor = color(255)
 A = 20
 flag = 0
 
@@ -18,7 +18,7 @@ def setup():
 def draw():
     background(backgroundColor)
     strokeWeight(1)
-    stroke(255,255,255,70)
+    stroke(0,0,0,70)
     #dibujar grilla
     noFill()
     for x in range(width/A):
@@ -72,7 +72,7 @@ def draw():
         point(V2['x'],V2['y'])
         stroke(V3['color'])
         point(V3['x'],V3['y'])
-        stroke(255)
+        stroke(0)
         strokeWeight(1)
         noFill()
         triangle( V1['x'],V1['y'],V2['x'],V2['y'],V3['x'],V3['y'] )
