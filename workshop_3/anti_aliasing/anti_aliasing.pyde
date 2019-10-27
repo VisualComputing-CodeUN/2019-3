@@ -4,7 +4,7 @@ backgroundColor = color(50)
 A = 20
 flag = 0
 
-width_pixel_factor = int(pow(2, 1))
+width_pixel_factor = int(pow(2, 4))
 
 V1={'x':int(random(sizeScreen)),'y':int(random(sizeScreen)),'color':color(255,0,0)}
 V2={'x':int(random(sizeScreen)),'y':int(random(sizeScreen)),'color':color(0,255,0)}
@@ -60,6 +60,7 @@ def draw():
                         col = anti_aliasing_pixel(x, y, A)
                         #print('color', col)
                 fill(col)
+                stroke(col)
                 rect( center['x']-A/2,center['y']-A/2,center['x']+A/2,center['y']+A/2 )
                 strokeWeight(2)
                 point(center['x'],center['y'])
