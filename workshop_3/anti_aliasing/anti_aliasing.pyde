@@ -58,9 +58,7 @@ def draw():
                             anti_aliasing = True
                     if anti_aliasing:
                         col = anti_aliasing_pixel(x, y, A)
-                        #print('color', col)
                 fill(col)
-                stroke(col)
                 rect( center['x']-A/2,center['y']-A/2,center['x']+A/2,center['y']+A/2 )
                 strokeWeight(2)
                 point(center['x'],center['y'])
@@ -103,11 +101,10 @@ def anti_aliasing_pixel(x, y, width_pixel):
         for y_subpixel in range(width_pixel_factor):
             sub_prixel_xcoor = x*width_pixel + (width_subpixel*x_subpixel)
             sub_prixel_ycoor = y*width_pixel + (width_subpixel*y_subpixel)
-            col, inside_triangule = get_baricentric_coor(sub_prixel_xcoor, sub_prixel_ycoor)
-            if inside_triangule:
-                red_sum += red(col)
-                green_sum += green(col)
-                blue_sum += blue(col)
+            col, inside_triangule = get_baricentric_coor(sub_prixel_xcoor, sub_prixel_ycoor)    
+            red_sum += red(col)
+            green_sum += green(col)
+            blue_sum += blue(col)
     num_pixels = width_pixel_factor*width_pixel_factor
     return color(red_sum/num_pixels, green_sum/num_pixels, blue_sum/num_pixels)
 
